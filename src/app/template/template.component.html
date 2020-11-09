@@ -1,0 +1,36 @@
+<form (ngSubmit)="OnPosalji(f)" #f="ngForm">
+    <div id="podaci-korisnika">
+        <div class="form-group">
+            <label for="ime">Ime</label>
+            <input type="text"
+                   id="ime"
+                   class="form-control"
+                   ngModel
+                   required
+                   name="ime">
+        </div>
+        <button class="btn btn-warning" type="button">Predlozi ime</button>
+        <div class="form-group">
+            <label for="email">Mail</label>
+            <input type="email"
+                    id="email"
+                    class="form-control"
+                    ngModel
+                    required email
+                    name="email"
+                    #email="ngModel">
+                    <span clas="help-block" *ngIf="!email.valid && email.touched">Unesite validan email</span>
+        </div>
+        <div class="form-group">
+            <label for="klub">Koji klub volis</label>
+            <select id="klub"
+                    class="form-control"
+                    ngModel
+                    name="klub">
+                <option value="Zvezda">Crvena Zvezda</option>
+                <option value="Partizan">Partizan</option>
+            </select>
+        </div>        
+        <button class="btn btn-primary" type="submit" >Posalji</button>
+    </div>
+</form>
