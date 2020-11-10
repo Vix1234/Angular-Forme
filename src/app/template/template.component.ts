@@ -9,16 +9,40 @@ import {NgForm} from "@angular/forms";
 export class TemplateComponent implements OnInit {
   @ViewChild('f', {static:false}) mojaForma: NgForm;
 
+  defaultKlub = 'Crvena Zvezda';
+  komentar = '';
+  polovi=['muski', 'zenski'];
+
   korisnik={
     ime:"",
     email:"",
-    klub:""
+    klub:"",
+    komentar:"",
+    pol:""
   }
-
+  poslato = false;
+  
   constructor() { }
 
-  OnPosalji(forma: NgForm){
-    console.log(forma);
+  predlozi(){
+    let ime="Petar";
+
+    this.mojaForma.form.patchValue(
+      {podaciKorisnika:{
+      ime:ime
+    }});
+  }
+
+  OnPosalji(){
+    //console.log(forma);
+    this.poslato = true;
+    this.korisnik.ime = this.mojaForma.value.podaciKorisnika.ime;
+    this.korisnik.email = this.mojaForma.value.podaciKorisnika.email;
+    this.korisnik.klub = this.mojaForma.value.podaciKorisnika.klub;
+    this.korisnik.komentar = this.mojaForma.value.podaciKorisnika.komentar;
+    this.korisnik.pol = this.mojaForma.value.podaciKorisnika.pol;
+
+    this.mojaForma.reset();
   }
 
   ngOnInit(): void {
